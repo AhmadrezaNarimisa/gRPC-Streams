@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package org.example.proto;
+
+option java_multiple_files=true;
+option java_package="org.example.realtimedistributedserver";
+option java_outer_classname="StreamingProto";
+
+service StreamingService {
+  rpc StreamData (stream StreamRequest) returns (StreamResponse) {};
+}
+
+message StreamRequest {
+  string client_id = 1;
+  string data = 2;
+  int64 timestamp = 3;
+}
+message StreamResponse {
+  bool success = 1;
+  string message = 2;
+  int32 total_messages_processed = 3;
+}
